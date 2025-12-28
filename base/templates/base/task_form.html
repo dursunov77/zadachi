@@ -1,0 +1,26 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+<div class="card card-custom p-4">
+    <div class="mb-3">
+        <a href="{% url 'tasks' %}" class="btn btn-secondary btn-sm">← Назад</a>
+    </div>
+
+    {% if '/delete/' in request.path %}
+        <h3>Удалить задачу?</h3>
+        <p>Вы уверены, что хотите удалить: "{{ task.title }}"?</p>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger w-100">Удалить</button>
+        </form>
+    {% else %}
+        <h3>Задача</h3>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary w-100">Сохранить</button>
+        </form>
+    {% endif %}
+</div>
+
+{% endblock content %}

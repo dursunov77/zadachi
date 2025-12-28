@@ -1,0 +1,18 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+<div class="card card-custom p-4">
+    <div class="mb-3">
+        <a href="{% url 'tasks' %}" class="btn btn-secondary btn-sm">← Назад</a>
+    </div>
+
+    <h3>Удаление задачи</h3>
+    <p>Вы уверены, что хотите безвозвратно удалить задачу: <strong>"{{ task.title }}"</strong>?</p>
+    
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger w-100">Да, удалить</button>
+    </form>
+</div>
+
+{% endblock content %}
